@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  userstest:
+      build: .
+      container_name: messengerstest
+      restart: unless-stopped
+      environment:
+        DB_HOST: localhost
+        DB_PORT: 5432
+        DB_USER: postgres
+        DB_PASSWORD: 123
+        DB_NAME: bubble
+      ports:
+        - "8086:8086"

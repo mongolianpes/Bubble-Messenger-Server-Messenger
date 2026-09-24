@@ -1,0 +1,20 @@
+FROM golang:1.25.10-alpine AS builder
+
+WORKDIR /messenger
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+RUN GOOS=linux GOARCH=amd64 go build -o messenger ./cmd/messenger
+
+FROM alpine:latest
+
+WORKDIR /messenger
+
+COPY --from=builder /messenger/messenger .
+
+EXPOSE 8086
+
+CMD ["./messenger"]
