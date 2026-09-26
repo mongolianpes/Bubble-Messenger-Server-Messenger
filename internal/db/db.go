@@ -13,7 +13,7 @@ const (
 	sendMessage = "INSERT INTO messages (sender_id, received_id, message) VALUES ($1, $2, $3)"
 	checkChats  = `SELECT sender_id, received_id, create_at, message
 		FROM messages
-		WHERE sender_id = $1 OR received_id = $1
+		WHERE received_id = $1
 		ORDER BY create_at ASC
 		LIMIT 5`
 	delMessages = `DELETE FROM messages
