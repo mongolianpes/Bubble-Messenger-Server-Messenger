@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log/slog"
 	"messenger/internal/db"
 	"messenger/internal/service"
 	"net"
@@ -13,18 +14,20 @@ import (
 func main() {
 	messagesStorage, err := db.NewPostgresStorage()
 	if err != nil {
-		panic(err)
+		slog.Error("Connect to DB", "error", err)
+		return
 	}
 
 	lis, err := net.Listen("tcp", ":8086")
 	if err != nil {
-		panic(err)
+		slog.Error("Start listen port", "error", err)
+		return
 	}
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterMessengerServiceServer(grpcServer, service.NewMessengerService(messagesStorage))
 
 	if err := grpcServer.Serve(lis); err != nil {
-		panic(err)
+		slog.Error("Serve gRPC service", "error", err)
 	}
 }
