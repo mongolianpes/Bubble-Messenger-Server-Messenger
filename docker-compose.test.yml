@@ -3,11 +3,11 @@ version: '3.8'
 services:
   userstest:
       build: .
-      container_name: messengerstest
+      container_name: messengertest
       restart: unless-stopped
       environment:
-        DB_HOST: localhost
-        DB_PORT: 5432
+        DB_HOST: host.docker.internal
+        DB_PORT: 5431
         DB_USER: postgres
         DB_PASSWORD: 123
         DB_NAME: bubble

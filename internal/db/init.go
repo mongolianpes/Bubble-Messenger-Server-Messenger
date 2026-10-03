@@ -6,6 +6,8 @@ import (
 	"fmt"
 	pb "messenger/proto"
 	"os"
+
+	_ "github.com/lib/pq"
 )
 
 type PostgresStorage struct {

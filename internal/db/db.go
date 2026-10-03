@@ -6,6 +6,8 @@ import (
 
 	pb "messenger/proto"
 
+	_ "github.com/lib/pq"
+
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
