@@ -1,6 +1,6 @@
 # Bubble Messenger
 ## Назначение
-Микросервис для обмена сообщениями между пользователями в проекте [Bubble](https://github.com/mongolianpes/Bubble-Messenger-Server)
+Микросервис для обмена сообщениями между пользователями в проекте [Bubble](https://github.com/mongolianpes/Bubble-Messenger-Server) <br>
 Через сообщения пользователей также передаються специальные сообщения инициализации аудио диалога
 
 ## Функционал
@@ -17,11 +17,11 @@ service MessengerService {
 Подробнее в файле messenger/proto/messenger.proto
 
 ## Переменные окружения
-Для корректной работы необходимы переменные окружения:
-DB_HOST - адрес БД
-DB_PORT - порт БД
-DB_USER - пользователи БД
-DB_PASSWORD - пароль пользователя БД
+Для корректной работы необходимы переменные окружения:<br>
+DB_HOST - адрес БД<br>
+DB_PORT - порт БД<br>
+DB_USER - пользователи БД<br>
+DB_PASSWORD - пароль пользователя БД<br>
 DB_NAME - название БД
 
 ## Порты
