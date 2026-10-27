@@ -26,6 +26,7 @@ const (
 			ORDER BY create_at ASC
 			LIMIT 5
 		)`
+	deleteOldMessages = "DELETE FROM messages WHERE create_at <= CURRENT_TIMESTAMP - INTERVAL '7 days'"
 )
 
 func (s *PostgresStorage) SendMessage(ctx context.Context, senderID, receivedID int, text string) error {
@@ -68,4 +69,18 @@ func (s *PostgresStorage) CheckChats(ctx context.Context, userID int) ([]*pb.New
 func (s *PostgresStorage) DelFewMessages(ctx context.Context, userID int) error {
 	_, err := s.db.ExecContext(ctx, delMessages, userID)
 	return err
+}
+
+func (s *PostgresStorage) DeleteOldMessages() (int64, error) {
+	result, err := s.db.Exec(deleteOldMessages)
+	if err != nil {
+		return 0, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return 0, err
+	}
+
+	return rowsAffected, nil
 }

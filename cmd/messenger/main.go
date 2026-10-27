@@ -18,6 +18,13 @@ func main() {
 		return
 	}
 
+	result, err := messagesStorage.DeleteOldMessages()
+	if err != nil {
+		slog.Error("Delete old messages", "error", err)
+	} else {
+		slog.Info("Delete old messages", "rowsAffected", result)
+	}
+
 	lis, err := net.Listen("tcp", ":8086")
 	if err != nil {
 		slog.Error("Start listen port", "error", err)
